@@ -105,6 +105,8 @@ const linkedList = new LinkedList();
 linkedList.addFirst(50);
 linkedList.addFirst(52);
 linkedList.addFirst(12);
+linkedList.addFirst(32);
+linkedList.addFirst(562);
 linkedList.addTail(100);
 linkedList.addPosition(40, 2);
 linkedList.removeHead();
