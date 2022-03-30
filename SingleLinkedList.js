@@ -124,6 +124,32 @@ class LinkedList {
         this.tail = prev;
         this.size--;
     };
+
+
+    /* [기능 6] => 노드 검색
+    */
+    searchNode = (input) => {
+        let prev = this.head;
+
+        while (prev.data !== input) {            
+            prev = prev.next;            
+        }
+
+        return prev;
+    }
+
+    /* [기능 7] => 사이즈 조회
+    */
+    getSize = () => {
+        return this.size;
+    }
+
+    /* [기능 8] => 리스트 전체 조회
+    */
+    getList = () => {
+        return this.head;
+    }
+
 }
 
 const linkedList = new LinkedList();
@@ -140,3 +166,4 @@ linkedList.removeSelectNode(4);
 linkedList.addTailNode(300);
 linkedList.removeTailNode();
 linkedList.removeFirstNode();
+linkedList.searchNode(85);
