@@ -20,7 +20,7 @@ class Stack {
 
         // 데이터가 하나도 없을때 top과 bottom의 노드값을 동일하게 함
         // 스토리지에 데이터만 추가
-        if (this.size === 0) {
+        if (this.isEmpty()) {
             this.top = new Node(data);
             this.bottom = new Node(data);
             this.storage[this.size] = this.top.data
@@ -68,7 +68,7 @@ class Stack {
     // 데이터가 비어있는지 확인
     isEmpty = () => {
         if (this.size <= 0){
-            return true
+            return true;
         }else{
             return false;
         }
