@@ -43,6 +43,8 @@ class Stack {
     pop = () => {
 
         if (this.isEmpty()){
+            // 스택이 비어있으면 bottom도 null 변경한다.
+            this.bottom = null;
             return '제거할 노드가 없습니다.';
         }
 
@@ -73,8 +75,14 @@ class Stack {
     }
 
     // 마지막에 넣은 데이터 확인
-    peek = () => {
+    peek = () => {        
 
+        if (this.isEmpty()){
+            return '검색할 데이터가 없습니다.';
+        }
+
+        console.log(this.top.data)
+        return this.top;
     }
 }
 
