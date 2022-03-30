@@ -82,6 +82,10 @@ class LinkedList {
         let next;
         let deleteNode;
 
+        if (prev === null || this.tail === null || this.size < n){
+            return '삭제할 노드가 없습니다.';
+        }
+
         for (let i = 0; i < n - 1; i++) {
             prev = prev.next;
         }
@@ -96,9 +100,7 @@ class LinkedList {
         // 삭제될 노드는 어떠한 객체도 참조하지 않는다.
 
         // 사이즈를 조정한다.
-        this.size--;
-
-        console.log(this.size);
+        this.size--;        
     };
 
     /* [기능 4] => tail에 새로운 노드를 추가
@@ -131,8 +133,8 @@ class LinkedList {
     searchNode = (input) => {
         let prev = this.head;
 
-        while (prev.data !== input) {            
-            prev = prev.next;            
+        while (prev.data !== input) {
+            prev = prev.next;
         }
 
         return prev;
@@ -147,7 +149,13 @@ class LinkedList {
     /* [기능 8] => 리스트 전체 조회
     */
     getList = () => {
-        return this.head;
+        let prev = this.head
+
+        while (prev) {
+            console.log(prev.data);
+            prev = prev.next;
+        }
+
     }
 
 }

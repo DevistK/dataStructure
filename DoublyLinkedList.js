@@ -81,23 +81,89 @@ class LinkedList {
     // head 삭제
     removeHead = () => {
         let deleteNode = this.head;
+
+        if (this.head === null) {
+            // head 가 없으면 (1개만 남았을때) , tail도 null로 만들어준다.
+            this.tail = null;
+            return '제거할 노드가 없습니다';
+        }
+
         this.head = deleteNode.next;
-        this.size--;
 
         if (this.head !== null) {
             this.head.prev = null;
         }
-    };
 
-    removeTail = () => {
-        let deleteNode = this.tail;
-
-        this.tail = deleteNode.prev;
-        this.tail.next = null;
         this.size--;
     };
 
-    removePosition = (n) => {};
+    // tail 삭제
+    removeTail = () => {
+        let deleteNode = this.tail;
+
+        if (this.tail === null) {
+            // tail 이 없으면 (1개만 남았을때) , head도 null로 만들어준다.
+            this.head = null;
+            return '제거할 노드가 없습니다';
+        }
+
+        this.tail = deleteNode.prev;
+
+        if (this.tail !== null) {
+            this.tail.next = null;
+        }
+
+        this.size--;        
+    };
+
+    // 특정 위치 노드삭제
+    removePosition = (n) => {
+        // head 부터 탐색
+        let prev = this.head;
+        let deleteNode;
+        let cur;
+
+        if (prev === null || this.tail === null || this.size < n) {
+            return '제거할 노드가 없습니다';
+        }
+
+        for (let i = 0; i < n - 1; i++) {
+            prev = prev.next;
+        }
+
+        // 삭제노드 임시저장
+        deleteNode = prev.next;
+
+        // 삭제노드의 다음요소 임시저장
+        cur = deleteNode.next;
+
+        // n-1번째 노드의 포인터를 cur 로 지정
+        prev.next = cur;
+        // cur의 이전 포인터를 n-1번째 노드로 지정
+        cur.prev = prev;
+
+        // 삭제노드의 앞,뒤 포인터를 해제시켜 어느곳에서도 참조하지 않게 함
+        deleteNode.next = null;
+        deleteNode.prev = null;
+
+        // 사이즈 감소
+        this.size--;
+
+    };
+
+    // 리스트 조회
+    getList = () => {
+        let prev = this.head;
+        while(prev){
+            console.log(prev.data);
+            prev = prev.next;
+        }
+    }
+
+    // 사이즈 조회
+    getSize = ()=>{
+        return this.size;
+    }
 }
 
 const linkedList = new LinkedList();
@@ -111,4 +177,4 @@ linkedList.addTail(100);
 linkedList.addPosition(40, 2);
 linkedList.removeHead();
 linkedList.removeTail();
-linkedList.removePosition();
+linkedList.removePosition(3); // remove node 52
