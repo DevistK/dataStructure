@@ -74,12 +74,12 @@ class Queue {
 
     // queue 제일 위 데이터 조회
     peekFront = () => {
-
+        return this.head;
     }
 
     // queue 제일 뒤 데이터 조회
     peekBack = () => {
-
+        return this.rear;
     }
 
     // 전체 리스트 조회
