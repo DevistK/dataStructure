@@ -33,7 +33,9 @@ class Deque {
         }
 
         // 사이즈 갱신
-        this.storage[this.size] = new Node(data).data;
+
+        // // push 가 맨 앞쪽 노드를 추가하는 위 로직이랑 같음
+        this.storage.push(new Node(data).data);
         this.size++;
 
         console.log(new Node(data).data);
