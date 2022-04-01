@@ -1,14 +1,33 @@
-// 시작점 root 는 단 하나만 존재
-// 마지막에 더이상 뻗어나갈 포인터가 없다면 해당 노드는 leaf (잎)이 된다.
-// root 노드 부터 마지막 노드 까지 도달하는 길은 path (경로) 다.
-
-// 부모 노드와 자식노드 사이의 포인터 개수를 높이 (height)라고도 표현한다. 나무를 본땄기 때문에 높이라고 표현하는듯함
-// 아래에 있는 노드들도 트리다. (root가 아닌 다른 노드가 자식 노드들을 가지게 되면 이것 또한 트리)
-// 연속적인 트리를 갖추게 되므로 재귀 함수를 사용한다.
-
-// 이진트리 => 자식 노드를 최대 두개씩 가진다  (무조건 2개를 채워야하는건 아님 , 1개가 될수도 있음)
-// 이진 검색 트리 => 이진트리를 검색한다.
-
-class Node{
-
+class Node {
+    constructor(data, left = null, right = null) {
+        this.data = data;
+        this.left = left;
+        this.right = right;
+    }
 }
+
+class BST {
+    constructor() {
+        this.root = null;
+    }
+
+    add = (data) => {
+        // 루트 초기화
+        let node = this.root;
+        // 루트가 없다면 루트 노드 추가
+        if (node === null) {
+            this.root = new Node(data);
+        } else {
+            // 루트 초기화 이후 노드 추가를 위한 재귀
+            let searchNode = (data) => {
+                if (data < node.data) {
+                    // 새로 추가되는 노드가 더 작으면 왼쪽으로 가지가 뻗어나감
+                } else if (data > node.data) {
+                    // 새로 추가되는 노드가 더 크면 오른쪽으로 가지가 뻗어나감
+                }
+            };
+        }
+    };
+}
+
+const tree = new BST();
