@@ -11,36 +11,57 @@ class BST {
         this.root = null;
     }
 
+    // add : 트리에 노드 추가
     add = (data) => {
-        // 루트 초기화
         let node = this.root;
-        // 루트가 없다면 루트 노드 추가
+
         if (node === null) {
             this.root = new Node(data);
-        } else {
-            // 루트 초기화 이후 노드 추가를 위한 재귀
+        } else if (node !== null) {
             let searchNode = (node) => {
                 if (data < node.data) {
-                    // 새로 추가되는 노드가 더 작으면 왼쪽으로 가지가 뻗어나감
                     if (node.left === null) {
                         node.left = new Node(data);
-                        return true;
                     } else if (node.left !== null) {
                         return searchNode(node.left);
                     }
                 } else if (data > node.data) {
-                    // 새로 추가되는 노드가 더 크면 오른쪽으로 가지가 뻗어나감
                     if (node.right === null) {
                         node.right = new Node(data);
-                        return true;
                     } else if (node.right !== null) {
                         return searchNode(node.right);
                     }
                 }
             };
-            return searchNode(node);
+            searchNode(node); // 루트부터 탐색 후 삽입 해야하므로 node를 인자로 넣음
         }
     };
+
+    // search : 검색값 과 비교하며 값 탐색
+    search = (data) => {
+        let node = this.root;
+
+        let searchNode = (node) => {
+            if (node === null) {
+                return '검색 대상이 존재하지 않습니다.';
+            } else {
+                if (data < node.data) {
+                } else if (data > node.data) {
+                } else if (data === node.data) {
+                }
+            }
+        };
+
+        searchNode(node);
+    };
+    // remove : 입력 한 노드 값 제거
+    remove = () => {};
 }
 
 const tree = new BST();
+
+tree.add(60);
+tree.add(41);
+tree.add(81);
+tree.add(20);
+tree.add(22);
