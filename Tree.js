@@ -33,7 +33,7 @@ class BST {
                     }
                 }
             };
-            searchNode(node); // 루트부터 탐색 후 삽입 해야하므로 node를 인자로 넣음
+            searchNode(node); // 루트부터 탐색 후 삽입 해야하므로 node 를 인자로 넣음
         }
     };
 
@@ -43,16 +43,22 @@ class BST {
 
         let searchNode = (node) => {
             if (node === null) {
-                return '검색 대상이 존재하지 않습니다.';
+                return false ;
             } else {
                 if (data < node.data) {
+                // 찾는 데이터가 node 보다 작다면
+                    return searchNode(node.left);
                 } else if (data > node.data) {
+                // 찾는 데이터가 node 보다 크다면
+                    return searchNode(node.right);
                 } else if (data === node.data) {
+                // 데이터를 찾았다면
+                    return node;
                 }
             }
         };
 
-        searchNode(node);
+        return searchNode(node);
     };
     // remove : 입력 한 노드 값 제거
     remove = () => {};
