@@ -61,7 +61,68 @@ class BST {
         return searchNode(node);
     };
     // remove : 입력 한 노드 값 제거
-    remove = () => {};
+    remove = (data) => {
+        let node = this.root;
+        let parent = null;
+        let children = null;
+
+        let searchNode = (node) => {
+            if (node === null) {
+                return false ;
+            } else {
+                if (data < node.data) {
+                    // 찾는 데이터가 node 보다 작다면
+                    parent = node;
+                    return searchNode(node.left);
+                } else if (data > node.data) {
+                    // 찾는 데이터가 node 보다 크다면
+                    parent = node;
+                    return searchNode(node.right);
+                } else if (data === node.data) {
+                    // 1. 단말 노드 제거시
+                    if (node.left === null && node.right === null){
+                        if (data === parent.right.data){
+                            parent.right = null;
+                            return true;
+                        }else if (data === parent.left.data){
+                            parent.left = null;
+                            return true;
+                        }
+                    // 2. 삭제노드의 서브트리가 1개일때 제거
+                    }else if (node.left !== null || node.right !== null){
+                        if (parent.left !== null){
+                            children = parent.left;
+
+                            if (children.left !== null){
+                                parent.left = children.left;
+                                return true;
+                            }else if (children.right !== null){
+                                parent.left = children.right;
+                                return true;
+                            }
+
+                        }
+                        if (parent.right !== null){
+                            children = parent.right;
+
+                            if (children.left !== null){
+                                parent.right = children.left;
+                                return true;
+                            }else if (children.right !== null){
+                                parent.right = children.right;
+                                return true;
+                            }
+                        }
+                    // 3. 삭제노드의 서브트리가 2개일때 제거
+                    }else {
+
+                    }
+                }
+            }
+        };
+
+        return searchNode(node);
+    };
 }
 
 const tree = new BST();
@@ -71,3 +132,5 @@ tree.add(41);
 tree.add(81);
 tree.add(20);
 tree.add(22);
+tree.add(100);
+tree.add(95);
