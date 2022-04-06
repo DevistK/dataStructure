@@ -88,13 +88,14 @@ class BST {
                             parent.left = null;
                             return true;
                         }
-
                     }else if (node.left !== null && node.right !==null){
                         // 2. 삭제노드의 서브트리가 2개일때 제거
-                        console.log(node.data)
                         // solutions
                         // 1. 왼쪽 서브트리에서 가장 큰 자손을 제거할 노드 자리로 올린다.
                         // 2. 오른쪽 서브트리에서 가장 작은 자손을 제거할 노드 자리로 올린다.
+                        if (node.left){
+                            console.log(node.data)
+                        }
                     } else{
                         // 3. 삭제노드의 서브트리가 1개일때 제거
                         if (parent.left !== null){
