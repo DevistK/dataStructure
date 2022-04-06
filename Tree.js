@@ -88,8 +88,11 @@ class BST {
                             parent.left = null;
                             return true;
                         }
-                    // 2. 삭제노드의 서브트리가 1개일때 제거
-                    }else if (node.left !== null || node.right !== null){
+
+                    }else if (node.left !== null && node.right !==null){
+                        // 2. 삭제노드의 서브트리가 2개일때 제거
+                    } else{
+                        // 3. 삭제노드의 서브트리가 1개일때 제거
                         if (parent.left !== null){
                             children = parent.left;
 
@@ -101,8 +104,7 @@ class BST {
                                 return true;
                             }
 
-                        }
-                        if (parent.right !== null){
+                        }else if (parent.right !== null){
                             children = parent.right;
 
                             if (children.left !== null){
@@ -113,9 +115,6 @@ class BST {
                                 return true;
                             }
                         }
-                    // 3. 삭제노드의 서브트리가 2개일때 제거
-                    }else {
-
                     }
                 }
             }
