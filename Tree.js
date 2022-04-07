@@ -61,10 +61,22 @@ class BST {
         return searchNode(node);
     };
     // remove : 입력 한 노드 값 제거
+
+
     remove = (data) => {
         let node = this.root;
         let parent = null;
         let children = null;
+        let successor = null;
+        let root = null;
+
+        let minValueFinder = (node)=>{
+            let find = node;
+            while (find.left !== null){
+                find = node.left;
+            }
+            return find;
+        }
 
         let searchNode = (node) => {
             if (node === null) {
@@ -88,14 +100,26 @@ class BST {
                             parent.left = null;
                             return true;
                         }
+
                     }else if (node.left !== null && node.right !==null){
                         // 2. 삭제노드의 서브트리가 2개일때 제거
                         // solutions
-                        // 1. 왼쪽 서브트리에서 가장 큰 자손을 제거할 노드 자리로 올린다.
-                        // 2. 오른쪽 서브트리에서 가장 작은 자손을 제거할 노드 자리로 올린다.
-                        if (node.left){
-                            console.log(node.data)
-                        }
+                        // 1. 오른쪽 서브트리에서 가장 작은 자손을 제거할 노드 자리로 올린다.
+                        /*
+                          삭제할 노드를 찾는다.
+                          삭제할 노드의 successor (오른쪽 서브트리 기준 제일 작은 값) 를 찾는다.
+                          삭제할 노드와 successor 의 노드값을 바꾼다.
+                          successor 노드를 삭제한다.
+                        */
+
+                       // 제거할 노드
+                       root = node;
+                        // 오른쪽 서브트리에서 제일 작은 노드를 찾는다.
+                       successor =  minValueFinder(node.right);
+                       // 제거할 노드 위치 노드 값을 제일 작은 노드 값 으로 변경
+                       node.data = successor.data;
+
+
                     } else{
                         // 3. 삭제노드의 서브트리가 1개일때 제거
                         if (parent.left !== null){
@@ -138,3 +162,4 @@ tree.add(20);
 tree.add(22);
 tree.add(100);
 tree.add(95);
+tree.add(103);
