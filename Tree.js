@@ -64,11 +64,9 @@ class BST {
 
 
     remove = (data) => {
-        let node = this.root;
         let parent = null;
         let children = null;
         let successor = null;
-        let root = null;
 
         let minValueFinder = (node)=>{
             let find = node;
@@ -78,78 +76,14 @@ class BST {
             return find;
         }
 
-        let searchNode = (node) => {
-            if (node === null) {
-                return false ;
-            } else {
-                if (data < node.data) {
-                    // 찾는 데이터가 node 보다 작다면
-                    parent = node;
-                    return searchNode(node.left);
-                } else if (data > node.data) {
-                    // 찾는 데이터가 node 보다 크다면
-                    parent = node;
-                    return searchNode(node.right);
-                } else if (data === node.data) {
-                    // 1. 단말 노드 제거시
-                    if (node.left === null && node.right === null){
-                        if (data === parent.right.data){
-                            parent.right = null;
-                            return true;
-                        }else if (data === parent.left.data){
-                            parent.left = null;
-                            return true;
-                        }
-
-                    }else if (node.left !== null && node.right !==null){
-                        // 2. 삭제노드의 서브트리가 2개일때 제거
-                        // solutions
-                        // 1. 오른쪽 서브트리에서 가장 작은 자손을 제거할 노드 자리로 올린다.
-                        /*
-                          삭제할 노드를 찾는다.
-                          삭제할 노드의 successor (오른쪽 서브트리 기준 제일 작은 값) 를 찾는다.
-                          삭제할 노드와 successor 의 노드값을 바꾼다.
-                          successor 노드를 삭제한다.
-                        */
-
-                       // 제거할 노드
-                       root = node;
-                        // 오른쪽 서브트리에서 제일 작은 노드를 찾는다.
-                       successor =  minValueFinder(node.right);
-                       // 제거할 노드 위치 노드 값을 제일 작은 노드 값 으로 변경
-                       node.data = successor.data;
-
-
-                    } else{
-                        // 3. 삭제노드의 서브트리가 1개일때 제거
-                        if (parent.left !== null){
-                            children = parent.left;
-
-                            if (children.left !== null){
-                                parent.left = children.left;
-                                return true;
-                            }else if (children.right !== null){
-                                parent.left = children.right;
-                                return true;
-                            }
-
-                        }else if (parent.right !== null){
-                            children = parent.right;
-
-                            if (children.left !== null){
-                                parent.right = children.left;
-                                return true;
-                            }else if (children.right !== null){
-                                parent.right = children.right;
-                                return true;
-                            }
-                        }
-                    }
-                }
-            }
+        /*
+         searchNode 는 인자가 두개가  필요
+         arg1 = root , arg2 = 삭제하고자하는 input 값
+         */
+        let searchNode = (root, data) => {
         };
 
-        return searchNode(node);
+        return searchNode(this.root, data);
     };
 }
 
