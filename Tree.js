@@ -64,26 +64,54 @@ class BST {
 
 
     remove = (data) => {
-        let parent = null;
-        let children = null;
         let successor = null;
 
         let minValueFinder = (node)=>{
-            let find = node;
-            while (find.left !== null){
-                find = node.left;
+            while (node.left !== null){
+                node = node.left;
             }
-            return find;
+            return node;
         }
 
-        /*
-         searchNode 는 인자가 두개가  필요
-         arg1 = root , arg2 = 삭제하고자하는 input 값
-         */
-        let searchNode = (root, data) => {
-        };
+        if (tree.root === null){
+            console.log('루트 노드가 존재하지 않습니다.')
+            return false;
+        }
+        // 노드탐색
+        let searchNode = (root, data)=>{
+            if (data < root.data){
+                // 찾는 노드가 더 작으면 왼쪽으로 탐색
+                parent = root;
+                return searchNode(root.left, data);
+            }else if (data > root.data){
+                // 찾는 노드가 더 크면 오른쪽으로 탐색
+                parent = root;
+                return searchNode(root.right, data);
+            }else{
+                // 단말노드 삭제
+                if (root.left === null && root.right === null){
+                    if (parent.left.data === root.data){
+                        parent.left = null;
+                    }else{
+                        parent.right = null;
+                    }
+                }else if(root.left !== null && root.right !== null){
+                    //    서브트리 2개 일때 삭제
+                    successor = minValueFinder(root.right);
+                    root.data = successor.data;
+                }else{
+                    //    서브트리 1개 일때 삭제
+                    if (root.left !== null){
+                        parent.left = root.left;
+                    }else if(root.right !== null){
+                        parent.right = root.right;
+                    }
+                }
+            }
+        }
 
-        return searchNode(this.root, data);
+        return searchNode(tree.root, data);
+
     };
 }
 
@@ -97,3 +125,5 @@ tree.add(22);
 tree.add(100);
 tree.add(95);
 tree.add(103);
+
+tree.remove(22);
