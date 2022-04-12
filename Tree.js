@@ -82,29 +82,32 @@ class BST {
             if (data < root.data){
                 // 찾는 노드가 더 작으면 왼쪽으로 탐색
                 parent = root;
-                return searchNode(root.left, data);
+                root.left = searchNode(root.left, data);
+                return root;
             }else if (data > root.data){
                 // 찾는 노드가 더 크면 오른쪽으로 탐색
                 parent = root;
-                return searchNode(root.right, data);
+                root.right =  searchNode(root.right, data);
+                return root;
             }else{
                 // 단말노드 삭제
                 if (root.left === null && root.right === null){
-                    if (parent.left.data === root.data){
-                        parent.left = null;
-                    }else{
-                        parent.right = null;
-                    }
+                    root = null;
+                    return root;
                 }else if(root.left !== null && root.right !== null){
                     //    서브트리 2개 일때 삭제
                     successor = minValueFinder(root.right);
                     root.data = successor.data;
+                    root.right = searchNode(root.right, successor.data);
+                    return root;
                 }else{
                     //    서브트리 1개 일때 삭제
                     if (root.left !== null){
-                        parent.left = root.left;
+                        root = root.left;
+                        return root;
                     }else if(root.right !== null){
-                        parent.right = root.right;
+                        root = root.right;
+                        return root;
                     }
                 }
             }
