@@ -67,9 +67,22 @@ class Heap {
             }
             return min;
         }
+
+        // 위 조건에 해당하지 않는 , 양쪽 노드 둘다 채워져 있으면서 루트보다 작을때
+        while (this.heap[leftIdx] < this.heap[currentIdx] || this.heap[rightIdx] < this.heap[currentIdx]){
+            let minIdx = this.heap[leftIdx] > this.heap[rightIdx] ? rightIdx : leftIdx;
+            this.swap(minIdx, currentIdx);
+            currentIdx = minIdx;
+            leftIdx = Math.floor(currentIdx * 2);
+            rightIdx = Math.floor((currentIdx * 2)+ 1);
+        }
+        return  min;
     }
 
 }
 
 const heap = new Heap();
+heap.push(5);
+heap.push(10);
 heap.push(1);
+heap.push(4);
