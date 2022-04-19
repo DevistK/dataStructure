@@ -1,0 +1,4 @@
+class Hash{
+    constructor() {
+    }
+}
